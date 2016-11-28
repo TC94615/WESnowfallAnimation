@@ -22,7 +22,15 @@
     self.window.rootViewController = [[UIViewController alloc] init];
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
-    WESnowfallAnimation *animation = [[WESnowfallAnimation alloc] initWithTarget:self.window duration:30.f];
+    NSArray *snowflakeImages = @[
+      [UIImage imageNamed:@"snowflake_1.png"],
+      [UIImage imageNamed:@"snowflake_2.png"],
+      [UIImage imageNamed:@"snowflake_3.png"],
+      [UIImage imageNamed:@"snowflake_4.png"],
+      [UIImage imageNamed:@"snowflake_5.png"]
+    ];
+    WESnowfallAnimation *animation = [[WESnowfallAnimation alloc] initWithTarget:self.window duration:30.f
+                                                                          images:snowflakeImages];
     [animation start];
     return YES;
 }

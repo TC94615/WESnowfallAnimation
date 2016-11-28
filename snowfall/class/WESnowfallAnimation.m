@@ -10,19 +10,21 @@
 static NSString *const AnimationGroupKey = @"animationGroup";
 static NSString *const LayerKey = @"layer";
 
-@interface WESnowfallAnimation()
+@interface WESnowfallAnimation()<CAAnimationDelegate>
 @property (nonatomic, strong) UIView *target;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic, strong) NSDate *beginTime;
 @property (nonatomic, strong) CALayer *animationBackgroundLayer;
+@property (nonatomic, strong) NSArray *images;
 @end
 
 @implementation WESnowfallAnimation
-- (instancetype)initWithTarget:(UIView *) target duration:(NSTimeInterval) duration {
+- (instancetype)initWithTarget:(UIView *) target duration:(NSTimeInterval) duration images:(NSArray *) images {
     self = [super init];
     if (self) {
         self.target = target;
         self.duration = duration;
+        self.images = images;
         self.animationBackgroundLayer = [CALayer layer];
     }
     return self;
@@ -37,7 +39,7 @@ static NSString *const LayerKey = @"layer";
 #pragma mark Private
 
 - (void)startSnowflakeAnimation {
-    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"snowflake_%@.png", @(arc4random_uniform(5) + 1)]];
+    UIImage *image = self.images[arc4random_uniform(self.images.count)];
     CALayer *imageLayer = [CALayer layer];
     imageLayer.contents = (id) image.CGImage;
     [imageLayer setFrame:CGRectMake(-image.size.width, -image.size.height, image.size.width, image.size.height)];

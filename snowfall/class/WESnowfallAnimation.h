@@ -9,7 +9,7 @@
 
 
 @interface WESnowfallAnimation : NSObject
-- (instancetype)initWithTarget:(UIView *) target duration:(NSTimeInterval) duration;
+- (instancetype)initWithTarget:(UIView *) target duration:(NSTimeInterval) duration images:(NSArray *) images;
 
 - (void)start;
 @end
